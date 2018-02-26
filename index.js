@@ -19,12 +19,12 @@ app.get('/', function (req, res) {
     let responseData = '<form method="POST" action="/thankyou">';
 
     for (let key in data) {
-        responseData += '<p>' + key + '</p>';
-        responseData += '<input name="' + key + '" value="' + data[key] +'"/>';
+        responseData += '<div><p>' + key + '</p>';
+        responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '" value="' + data[key] +'">' + data[key] +'</textarea></div>';
     }
-
-    responseData += '<button type="submit">Salva</button>';
+    responseData += '<div><button type="submit">Salva</button></div>';
     responseData += '</form>';
+
 
     res.send(responseData);
 
@@ -32,6 +32,10 @@ app.get('/', function (req, res) {
 
 app.post('/thankyou', function (req, res) {
     console.log(req.body);
+    let newData = JSON.stringify(req.body, null, 2);
+
+    fs.writeFile(__dirname + '/data/en.json', newData);
+
     res.sendFile(__dirname + '/_/thankyou.html');
 });
 
