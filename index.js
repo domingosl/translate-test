@@ -5,16 +5,16 @@ const fs            = require('fs');
 const app = express();
 
 
-let data = fs.readFileSync(__dirname + '/data/en.json', 'UTF-8');
-
-data = JSON.parse(data);
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
 app.get('/', function (req, res) {
+
+    let data = fs.readFileSync(__dirname + '/data/en.json', 'UTF-8');
+
+    data = JSON.parse(data);
 
     let wordCount = 0;
 
