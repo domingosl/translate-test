@@ -1,0 +1,8 @@
+.translation-box p {
+    font-size: 15px;
+}
+
+.translation-box textarea {
+    font-size: 20px;
+    width: 500px;
+}

@@ -18,10 +18,12 @@ app.get('/', function (req, res) {
 
     let wordCount = 0;
 
-    let responseData = '<form method="POST" action="/thankyou">';
+    let responseData = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Test page</title><link rel="stylesheet" type="text/css" href="/styles.css"></head><body>';
+
+    responseData += '<form method="POST" action="/thankyou">';
 
     for (let key in data) {
-        responseData += '<div><p>' + key + '</p>';
+        responseData += '<div class="translation-box"><p>' + key + '</p>';
         responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '" value="' + data[key] +'">' + data[key] +'</textarea></div>';
 
         wordCount += data[key].split(' ').length;
@@ -29,6 +31,9 @@ app.get('/', function (req, res) {
     responseData += '<div><button type="submit">Salva</button></div>';
     responseData += '</form>';
     responseData += 'word count: ' + wordCount;
+
+
+    responseData += '</body></html>';
 
 
     res.send(responseData);
