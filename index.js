@@ -16,14 +16,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
 
+    let wordCount = 0;
+
     let responseData = '<form method="POST" action="/thankyou">';
 
     for (let key in data) {
         responseData += '<div><p>' + key + '</p>';
         responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '" value="' + data[key] +'">' + data[key] +'</textarea></div>';
+
+        wordCount += data[key].split(' ').length;
     }
     responseData += '<div><button type="submit">Salva</button></div>';
     responseData += '</form>';
+    responseData += 'word count: ' + wordCount;
 
 
     res.send(responseData);
