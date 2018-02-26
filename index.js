@@ -44,7 +44,7 @@ app.post('/thankyou', function (req, res) {
     console.log(req.body);
     let newData = JSON.stringify(req.body, null, 2);
 
-    fs.writeFile(__dirname + '/data/en.json', newData);
+    fs.writeFileSync(__dirname + '/data/en.json', newData);
 
     res.sendFile(__dirname + '/_/thankyou.html');
 });
