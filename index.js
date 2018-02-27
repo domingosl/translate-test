@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 
     for (let key in data) {
         responseData += '<div class="translation-box"><p>' + key + '</p>';
-        responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '" value="' + data[key] +'">' + data[key] +'</textarea></div>';
+        responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '">' + data[key] +'</textarea></div>';
 
         wordCount += data[key].split(' ').length;
     }
@@ -58,7 +58,7 @@ app.get('/translate', function (req, res) {
 
     for (let key in data) {
         responseData += '<div class="translation-box"><p>' + key + '</p>';
-        responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '" value="' + data[key] +'">' + data[key] +'</textarea></div>';
+        responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '" >' + data[key] +'</textarea></div>';
 
         wordCount += data[key].split(' ').length;
     }
