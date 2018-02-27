@@ -4,11 +4,7 @@ const fs            = require('fs');
 
 const app = express();
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 app.get('/', function (req, res) {
 
@@ -41,44 +37,47 @@ app.get('/', function (req, res) {
 });
 
 app.post('/thankyou', function (req, res) {
-    console.log(req.body);
     let newData = JSON.stringify(req.body, null, 2);
-
     fs.writeFileSync(__dirname + '/data/en.json', newData);
 
     res.sendFile(__dirname + '/_/thankyou.html');
 });
 
 
+app.get('/translate', function (req, res) {
 
-app.get('/2', function (req, res) {
+    let data = fs.readFileSync(__dirname + '/data/responseFilter.json', 'UTF-8');
 
-    let dataUs = fs.readFileSync(__dirname + '/data/en_US.json', 'UTF-8');
-
-    dataUs = JSON.parse(dataUs);
+    data = JSON.parse(data);
 
     let wordCount = 0;
 
-    let responseData = '<form method="POST">';
+    let responseData = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Test page</title><link rel="stylesheet" type="text/css" href="/styles.css"></head><body>';
 
-    for (let key in dataUs) {
-        responseData += '<div style="margin-bottom:40px"><input type="checkbox" style="vertical-align:25px; margin-right:15px"><textarea rows="4" cols="50" value="'+ key +'">' + key + '</textarea>';
-        responseData += '<textarea style="margin-left:20px" rows="4" cols="50" name="' + key + '" value="' + dataUs[key] +'">' + dataUs[key] +'</textarea></div>';
+    responseData += '<form method="POST">';
 
-        wordCount += dataUs[key].split(' ').length;
+    for (let key in data) {
+        responseData += '<div class="translation-box"><p>' + key + '</p>';
+        responseData += '<textarea style="margin-bottom: 20px" rows="4" cols="50" name="' + key + '" value="' + data[key] +'">' + data[key] +'</textarea></div>';
+
+        wordCount += data[key].split(' ').length;
     }
     responseData += '<div><button type="submit">Salva</button></div>';
     responseData += '</form>';
     responseData += 'word count: ' + wordCount;
 
 
+    responseData += '</body></html>';
+
+
     res.send(responseData);
 
 });
 
-
-app.post('/2', function (req, res) {
-    console.log(req.body);
+app.post('/translate', function (req, res) {
+    let newTranslate = JSON.stringify(req.body, null, 2);
+    fs.writeFileSync(__dirname + '/data/responseFilter.json', newTranslate);
+    res.send('Grazie, dati salvati!' + '<a href="/translate">Torna indietro</a>');
 });
 
 
