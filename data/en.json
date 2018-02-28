@@ -163,5 +163,8 @@
   "REGISTER_PRIVACY_CHECK_ONE": "Acconsento all'uso dei miei dati secondo l'informativa",
   "REGISTER_PRIVACY_CHECK_INSTRUCTION": "Se vuoi selezionare il consenso parzialmente, deseleziona l’opzione qui sotto.",
   "REGISTER_PRIVACY_CHECK_TWO": "Acconsento all’uso dei miei dati personali per ricevere la newsletter e per le finalità di marketing correlate ai servizi offerti.",
-  "SEARCH_WEDDING": "Cerca matrimonio"
+  "SEARCH_WEDDING": "Cerca matrimonio",
+  "CONFIRM_MESSAGE_RSVP": "La tua conferma è stata inviata agli sposi",
+  "CONFIRM_LIST_MESSAGE": "Il tuo messaggio è stato inviato agli sposi",
+
 }
